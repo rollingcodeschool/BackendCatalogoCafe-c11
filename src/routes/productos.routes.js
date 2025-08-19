@@ -1,10 +1,10 @@
 import { Router } from "express";
-import { borrarProductoPorId, crearProducto, leerProductoPorId, leerProductos, test } from "../controllers/productos.controllers.js";
+import { borrarProductoPorId, crearProducto, editarProductoPorId, leerProductoPorId, leerProductos, test } from "../controllers/productos.controllers.js";
 
 const router = Router();
 // get, post, put, delete solicitud, request
 router.route('/test').get(test)
 router.route('/').get(leerProductos).post(crearProducto)
-router.route('/:id').get(leerProductoPorId).delete(borrarProductoPorId)
+router.route('/:id').get(leerProductoPorId).delete(borrarProductoPorId).put(editarProductoPorId)
 
 export default router;
