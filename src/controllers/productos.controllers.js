@@ -33,4 +33,20 @@ export const crearProducto = async (req, res) => {
   }
 };
 
+export const leerProductoPorId = async (req, res) =>{
+  try {
+    //1- obtener el parametro del request
+    //2- pedir a mongoose que encuentre el producto con tal id
+    const productoBuscado = await Producto.findById(req.params.id)
+    if(!productoBuscado){
+      return res.status(404).json({ mensaje: 'Producto no encontrado' });
+    }
+    //3- contestar al front
+    res.status(200).json(productoBuscado);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ mensaje: 'Error al obtener el producto' });
+  }
+}
+
 // agregar funcion para editar Producto
