@@ -1,12 +1,23 @@
 import { body } from "express-validator";
 import resultadoValidacion from "./resultadoValidacion.js";
+import Producto from "../models/producto.js";
 
 const validacionProducto = [
   body("nombreProducto")
     .notEmpty()
     .withMessage("El nombre del producto es obligatorio")
     .isLength({ min: 2, max: 100 })
-    .withMessage("El nombre del producto debe tener entre 2 y 100 caracteres"),
+    .withMessage("El nombre del producto debe tener entre 2 y 100 caracteres")
+    .custom(async (valor, {req})=>{
+      const productoExistente = await Producto.findOne({nombreProducto: valor})
+      //no existe ningun producto con el nombre 'valor'
+      if(!productoExistente) return true
+      // verificar si es un PUT, chequear si el id del productoExistente es el mismo que el producto que estoy editando
+      if(req.params?.id && productoExistente._id.toString() === req.params.id) return true
+     
+      throw new Error('Ya existe un producto con ese nombre')
+    })
+    ,
   body("precio")
     .notEmpty()
     .withMessage("El precio es un dato obligatorio")
