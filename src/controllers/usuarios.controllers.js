@@ -12,6 +12,7 @@ export const leerUsuarios = async (req, res) => {
 
 export const crearUsuario = async (req, res) => {
   try {
+    //hashear el password
     const nuevoUsuario = new Usuario(req.body);
     await nuevoUsuario.save();
     //4- enviar respuesta
