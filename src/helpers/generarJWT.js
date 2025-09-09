@@ -5,7 +5,7 @@ const generarJWT = async (nombreUsuario, email)=>{
         //generar el payload
         const payload = {nombreUsuario, email}
         //firmar el token
-        const token = await jwt.sign(payload, process.env.SECRET_JWT, {expiresIn: '2h'})
+        const token = await jwt.sign(payload, process.env.SECRET_JWT, {expiresIn: '2m'})
         return token
     } catch (error) {
         console.error(error)
