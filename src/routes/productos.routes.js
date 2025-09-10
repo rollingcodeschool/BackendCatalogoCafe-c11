@@ -7,6 +7,6 @@ const router = Router();
 // get, post, put, delete solicitud, request
 router.route('/test').get(test)
 router.route('/').get(leerProductos).post([verificarJWT,validacionProducto],crearProducto)
-router.route('/:id').get(leerProductoPorId).delete(borrarProductoPorId).put(validacionProducto,editarProductoPorId)
+router.route('/:id').get(leerProductoPorId).delete(verificarJWT,borrarProductoPorId).put([verificarJWT,validacionProducto],editarProductoPorId)
 
 export default router;
