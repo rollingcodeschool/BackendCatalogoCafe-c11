@@ -84,12 +84,9 @@ export const editarProductoPorId = async (req, res) => {
 
 export const productosPaginados = async (req, res) => {
   try {
-    console.log(req.query);
     const page = parseInt(req.query.page) || 1; //numero de pagina
     const limit = parseInt(req.query.limit) || 10; //limit es la cantidad de productos que quieres mostrar por página.
     const skip = (page - 1) * limit; //la fórmula (page - 1) * limit te da el número de productos que debes omitir (skip) para empezar en la página correcta.
-    console.log(page, limit, skip);
-
     // const productos = await Producto.find().skip(skip).limit(limit);
     // const total = await Producto.countDocuments();
 
