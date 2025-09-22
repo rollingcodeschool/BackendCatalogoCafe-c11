@@ -30,13 +30,6 @@ const validacionProducto = [
         throw new Error("El precio debe estar entre 50 y 1000000");
       }
     }),
-  body("imagen")
-    .notEmpty()
-    .withMessage("La imagen es un dato obligatorio")
-    .matches(/(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png|webp)/)
-    .withMessage(
-      "La imagen debe ser una URL válida y debe terminar en .jpg, .jpeg, .png o .webp"
-    ),
   body("categoria")
     .notEmpty()
     .withMessage("La categoria es un dato obligatorio")
